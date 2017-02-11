@@ -8,6 +8,9 @@ inspired by material design
 ## Demo
 [https://gomonk3037.github.io/siiimple-Toast/](https://gomonk3037.github.io/siiimple-Toast/)
 
+## Available
+IE Edge, Chrome, Opera
+
 ## Usage
 
 ```javascript
