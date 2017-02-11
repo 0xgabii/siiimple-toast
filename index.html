@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>siiimple-toast</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <a href="https://github.com/you">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+            alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <div class="box">
+        <h1>siiimple - Toast</h1>
+        <input id="message" type="text" placeholder="Please enter your message">
+        <div class="btn-wrapper">
+            <button id="default">Default</button>
+            <button id="success">Success</button>
+            <button id="alert">Alert</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        const toast = new siiimpleToast({ rootElement: 'body' }),
+            btn_default = document.getElementById('default'),
+            btn_success = document.getElementById('success'),
+            btn_alert = document.getElementById('alert');
+
+        btn_default.addEventListener('click', function () {
+            const message = document.getElementById('message');
+            message.value ? toast.message(message.value) : toast.message('Hello World');
+        });
+        btn_success.addEventListener('click', function () {
+            const message = document.getElementById('message');
+            message.value ? toast.success(message.value) : toast.success('Hello World');
+        });
+        btn_alert.addEventListener('click', function () {
+            const message = document.getElementById('message');
+            message.value ? toast.alert(message.value) : toast.alert('Hello World');
+        });
+    </script>
+</body>
+
+</html>

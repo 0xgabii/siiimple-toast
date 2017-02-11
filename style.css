@@ -1,0 +1,58 @@
+@import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: lightcoral;
+	overflow: hidden;
+	font-family: 'Noto Sans Korean', Helvetica, Arial, sans-serif;
+}
+
+.box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+h1{
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin: 1rem 0 2.5rem 0;
+}
+
+#message{
+    width: 100%;
+    padding: 1rem 1.15rem;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+}
+
+.btn-wrapper{
+    display: flex;
+    width: 100%;
+}
+.btn-wrapper > button{
+    padding: 1rem 1.2rem;
+    width: 33.3%;
+    font-size: 1.2rem;
+    border: none;
+    color: white;    
+}
+
+#default{
+    background-color: #323232;
+}
+#success{
+    background-color: #8BC34A;   
+}
+#alert{
+    background-color: #d93737;
+}
+
