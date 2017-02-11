@@ -5,6 +5,9 @@
 easily replace console.log and alert in toast message
 inspired by material design
 
+## Demo
+[https://gomonk3037.github.io/siiimple-Toast/](https://gomonk3037.github.io/siiimple-Toast/)
+
 ## Usage
 
 ```javascript
