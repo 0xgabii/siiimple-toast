@@ -82,7 +82,6 @@ class siiimpleToast {
     this.logic('success', message);
   }
   alert(message) {
-    console.log(message);
     this.logic('alert', message);
   }
 }
