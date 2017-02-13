@@ -13,10 +13,17 @@ IE Edge, Chrome, Opera
 
 ## Usage
 
+**Parameters**
+- vertical: vertical direction ex) top, bottom
+- horizontal: horizontal direction ex) left, center, right
+
 ```javascript
 
+const toast = new siiimpleToast();
+// same 
 const toast = new siiimpleToast({
-  rootElement: 'body'
+  vertical: 'top',
+  horizontal: 'center'
 });
 
 // default message
