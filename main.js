@@ -35,7 +35,10 @@ class siiimpleToast {
     if (this._settings.horizontal == 'left')
       this.horizontalStyle = { left: '1rem' };
     else if (this._settings.horizontal == 'center')
-      this.horizontalStyle = { left: '50%', transform: 'translateX(-50%) scale(0.5)' };
+      this.horizontalStyle = {
+        left: '50%',
+        transform: 'translateX(-50%) scale(0.5)'
+      };
     else if (this._settings.horizontal == 'right')
       this.horizontalStyle = { right: '1rem' };
   }
@@ -93,7 +96,6 @@ class siiimpleToast {
     // remove Action
     setTimeout(() => {
       let coordinate_left = newToast.getBoundingClientRect().left,
-        coordinate_right = newToast.getBoundingClientRect().right,
         width = newToast.offsetWidth;
 
       if (this._settings.horizontal == 'right')
