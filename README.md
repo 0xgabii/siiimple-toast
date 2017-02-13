@@ -17,9 +17,9 @@ IE Edge, Chrome, Opera
 
 **Parameters**
 - vertical: vertical direction 
-  - ex) top, bottom
+  - top, bottom
 - horizontal: horizontal direction 
-  - ex) left, center, right
+  - left, center, right
 
 ```javascript
 
