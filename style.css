@@ -17,21 +17,64 @@ body{
     position: absolute;
     left: 50%;
     top: 50%;
+    width: 55rem;
     transform: translate(-50%,-50%);
 }
 
 h1{
     font-size: 3rem;
     font-weight: bold;
+    text-align: center;
     color: white;
-    margin: 1rem 0 2.5rem 0;
+    margin: 1rem 0 2rem 0;
+}
+
+h3{
+    font-size: 1.5rem;
+    color: black;
+    margin: 1rem 0;
+}
+
+.box-inner{
+    display: flex;
+    align-content: center;
+}
+
+.box-inner > div{
+    margin: 0 1rem;
+}
+
+.inner-code{
+    width:100%;
+}
+
+pre{    
+    margin-top: 2rem;
+    padding: 2rem;
+    height: 90%;
+    border-radius: 1rem;
+    line-height: 1.5;
+    font-size: 1.5rem;
+    font-family: monospace;
+    background-color: #272822;
+    color: white;
+}
+
+.inner-settings{
+    width:100%;
 }
 
 #message{
     width: 100%;
-    padding: 1rem 1.15rem;
-    margin-bottom: 2rem;
-    font-size: 1.4rem;
+    padding: 0.7rem;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+select{
+    width:100%;
+    padding: 0.7rem;
+    font-size: 1.2rem;
 }
 
 .btn-wrapper{
