@@ -1,6 +1,6 @@
 # siiimple-Toast
 
-[!img](demo.png)
+![img](demo.png)
 
 **vanilla JS(ES6)**
 
