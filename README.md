@@ -1,5 +1,7 @@
 # siiimple-Toast
 
+[!img](demo.png)
+
 **vanilla JS(ES6)**
 
 easily replace console.log and alert in toast message
