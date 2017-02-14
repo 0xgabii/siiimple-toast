@@ -13,17 +13,19 @@ npm install --save siiimple-toast
 ```
 
 ## Demo
+
 Static hosted [demo site](https://gomonk3037.github.io/siiimple-Toast/) on GitHub.
 
 ## Available
+
 IE Edge, Chrome, Opera
 
 **If you use [Babel](https://babeljs.io/), you can support up to ie9.**
 
 ## Usage
 
-### Parameter
-change message direction
+### Parameter: change message direction
+
 vertical: top, bottom
 horizontal: left, center, right
 
