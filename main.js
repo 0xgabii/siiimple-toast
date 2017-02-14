@@ -122,3 +122,5 @@ class siiimpleToast {
     this.init('alert', message);
   }
 }
+
+export default siiimpleToast;
