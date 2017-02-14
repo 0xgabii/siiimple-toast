@@ -1,12 +1,12 @@
 {
   "name": "siiimple-toast",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "easily replace console.log and alert in toast message inspired by material design",
   "main": "./distribution/main.js",
   "scripts": {
-    "build": "babel source --presets babel-preset-es2015 --out-dir distribution && babel source --plugins transform-object-assign --out-dir distribution",
-    "indexbuild": "babel public --presets babel-preset-es2015 --out-dir distribution && babel public --plugins transform-object-assign --out-dir distribution",
-    "start": "npm run rebuild"
+    "build": "babel source --presets babel-preset-es2015 --plugins transform-object-assign --out-dir distribution",
+    "indexbuild": "babel public --presets babel-preset-es2015 --plugins transform-object-assign --out-dir distribution",
+    "start": "npm run build"
   },
   "repository": {
     "type": "git",
