@@ -15,7 +15,7 @@ npm install --save siiimple-toast
 
 ## Demo
 
-Static hosted [demo site](https://gomonk3037.github.io/siiimple-Toast/) on GitHub.
+Static hosted [demo site](https://rawgit.com/gomonk3037/siiimple-Toast/master/public/index.html) on GitHub.
 
 ## Usage
 
