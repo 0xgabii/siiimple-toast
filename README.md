@@ -1,27 +1,37 @@
 # siiimple-Toast
 
-![img](demo.png)
+![demo](http://i.imgur.com/TNzvHD4.png)
 
 **vanilla JS(ES6)**
 
 easily replace console.log and alert in toast message
 inspired by material design
 
+## Getting Started
+```
+npm install --save siiimple-toast
+```
+
 ## Demo
-[https://gomonk3037.github.io/siiimple-Toast/](https://gomonk3037.github.io/siiimple-Toast/)
+Static hosted [demo site](https://gomonk3037.github.io/siiimple-Toast/) on GitHub.
 
 ## Available
 IE Edge, Chrome, Opera
 
+**If you use [Babel](https://babeljs.io/), you can support up to ie9.**
+
 ## Usage
 
-**Parameters**
-- vertical: vertical direction 
-  - top, bottom
-- horizontal: horizontal direction 
-  - left, center, right
+### Parameter
+change message direction
+
+**vertical**: top, bottom
+**horizontal**: left, center, right
+
+### Example
 
 ```javascript
+import siiimpleToast from 'siiimple-toast';
 
 const toast = new siiimpleToast();
 // same 
@@ -40,3 +50,7 @@ toast.message('Successfully processed');
 toast.alert('Something seems to be wrong');
 
 ```
+
+## License
+
+This project is licensed under the MIT License

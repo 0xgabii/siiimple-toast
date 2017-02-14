@@ -1,0 +1,25 @@
+{
+  "name": "siiimple-toast",
+  "version": "0.0.1",
+  "description": "easily replace console.log and alert in toast message inspired by material design",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gomonk3037/siiimple-Toast.git"
+  },
+  "keywords": [
+    "toast",
+    "alert",
+    "message",
+    "consolelog"
+  ],
+  "author": "GoEunseok",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gomonk3037/siiimple-Toast/issues"
+  },
+  "homepage": "https://github.com/gomonk3037/siiimple-Toast#readme"
+}
