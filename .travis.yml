@@ -3,6 +3,3 @@
  api_key:
  email: gomonk3037@gmail.com
  provider: npm
-
- before_install:
-  - "node . install -g ."
