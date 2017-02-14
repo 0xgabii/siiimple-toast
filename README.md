@@ -24,10 +24,12 @@ IE Edge, Chrome, Opera
 
 ## Usage
 
-### Parameter: change message direction
+### Parameter
 
-vertical: top, bottom
-horizontal: left, center, right
+change message direction <br>
+
+vertical: top, bottom <br>
+horizontal: left, center, right <br>
 
 ### Example
 
