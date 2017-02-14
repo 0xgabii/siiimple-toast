@@ -1,8 +1,22 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
 var siiimpleToast = function () {
   function siiimpleToast(settings) {
@@ -56,13 +70,13 @@ var siiimpleToast = function () {
       // set message
       newToast.innerHTML = message;
       // set defaultStyle
-      Object.assign(newToast.style, this.defaultStyle);
+      _extends(newToast.style, this.defaultStyle);
       // set message Mode
       if (state == 'default') newToast.style.backgroundColor = '#323232';else if (state == 'alert') newToast.style.backgroundColor = '#d93737';else if (state == 'success') newToast.style.backgroundColor = '#8BC34A';
       // set vertical direction
-      Object.assign(newToast.style, this.verticalStyle);
+      _extends(newToast.style, this.verticalStyle);
       // set horizontal direction
-      Object.assign(newToast.style, this.horizontalStyle);
+      _extends(newToast.style, this.horizontalStyle);
 
       // insert Toast DOM
       root.insertBefore(newToast, root.firstChild);

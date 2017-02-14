@@ -18,7 +18,8 @@ body{
     left: 50%;
     top: 50%;
     width: 55rem;
-    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
 }
 
 h1{
@@ -36,8 +37,11 @@ h3{
 }
 
 .box-inner{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
 }
 
 .box-inner > div{
@@ -78,6 +82,8 @@ select{
 }
 
 .btn-wrapper{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
 }
