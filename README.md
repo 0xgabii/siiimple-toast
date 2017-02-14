@@ -1,5 +1,7 @@
 # siiimple-Toast
 
+[![npm version](https://img.shields.io/npm/v/siiimple-toast.svg)](https://badge.fury.io/js/siiimple-toast) [![available](https://img.shields.io/badge/available-IE9%2B%2C%20Chrome%2C%20Opera%20-brightgreen.svg)]() [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+
 ![demo](http://i.imgur.com/TNzvHD4.png)
 
 **vanilla JS**
@@ -48,7 +50,7 @@ toast.alert('Something seems to be wrong');
 ```
 ## Available
 
-IE 9+ | Chrome | Opera
+IE9+, Chrome, Opera
 
 ## License
 
