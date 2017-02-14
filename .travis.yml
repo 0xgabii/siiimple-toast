@@ -1,5 +1,5 @@
  language: node_js
  deploy:
- api_key:
+ api_key: '…af81b502'
  email: gomonk3037@gmail.com
  provider: npm
