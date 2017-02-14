@@ -24,9 +24,8 @@ IE Edge, Chrome, Opera
 
 ### Parameter
 change message direction
-
-**vertical**: top, bottom
-**horizontal**: left, center, right
+vertical: top, bottom
+horizontal: left, center, right
 
 ### Example
 
