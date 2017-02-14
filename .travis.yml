@@ -2,3 +2,6 @@ deploy:
   provider: npm
   email: "gomonk3037@gmail.com"
   api_key: 
+
+before_install:
+  npm install -g
