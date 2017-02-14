@@ -2,8 +2,7 @@
 
 ![demo](http://i.imgur.com/TNzvHD4.png)
 
-**vanilla JS(ES6)**
-
+**vanilla JS**
 easily replace console.log and alert in toast message
 inspired by material design
 
@@ -15,12 +14,6 @@ npm install --save siiimple-toast
 ## Demo
 
 Static hosted [demo site](https://gomonk3037.github.io/siiimple-Toast/) on GitHub.
-
-## Available
-
-IE Edge, Chrome, Opera
-
-**If you use [Babel](https://babeljs.io/), you can support up to ie9.**
 
 ## Usage
 
@@ -53,6 +46,9 @@ toast.message('Successfully processed');
 toast.alert('Something seems to be wrong');
 
 ```
+## Available
+
+IE 9+ | Chrome | Opera
 
 ## License
 

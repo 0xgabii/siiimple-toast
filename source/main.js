@@ -1,4 +1,4 @@
-class siiimpleToast {
+export default class siiimpleToast {
   constructor(settings) {
     // default settings
     if (!settings) {
@@ -122,5 +122,3 @@ class siiimpleToast {
     this.init('alert', message);
   }
 }
-
-export default siiimpleToast;
