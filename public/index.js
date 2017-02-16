@@ -69,48 +69,52 @@ class siiimpleToast {
 
     let time = 0;
 
-    // add Action
     setTimeout(() => {
-      let stackMargin = 15;
-      const toast = document.getElementsByClassName(this.defaultClass);
-
-      newToast.style.opacity = 1;
-      if (this._settings.horizontal == 'center')
-        newToast.style.transform = 'translateX(-50%) scale(1)';
-      else
-        newToast.style.transform = 'scale(1)';
-
-      for (let i = 0; i < toast.length; i++) {
-        let height = toast[i].offsetHeight;
-        let topMargin = 15;
-
-        if (this._settings.vertical == 'bottom')
-          toast[i].style.bottom = stackMargin + 'px';
-        else if (this._settings.vertical == 'top')
-          toast[i].style.top = stackMargin + 'px';
-
-        stackMargin += height + topMargin;
-      }
+      this.addAction(newToast);
     }, time += 100);
-
-    // remove Action
     setTimeout(() => {
-      let coordinate_left = newToast.getBoundingClientRect().left,
-        width = newToast.offsetWidth;
-
-      if (this._settings.horizontal == 'right')
-        newToast.style.right = '-' + width + 'px';
-      else
-        newToast.style.left = coordinate_left + width + 'px';
-
-      newToast.style.opacity = 0;
+      this.removeAction(newToast);
     }, time += 3000);
-
-    // delete Dom
     setTimeout(() => {
-      const parent = newToast.parentNode;
-      parent.removeChild(newToast);
+      this.removeDOM(newToast);
     }, time += 500);
+  }
+  addAction(newToast) {
+    let stackMargin = 15;
+    const toast = document.getElementsByClassName(this.defaultClass);
+
+    newToast.style.opacity = 1;
+    if (this._settings.horizontal == 'center')
+      newToast.style.transform = 'translateX(-50%) scale(1)';
+    else
+      newToast.style.transform = 'scale(1)';
+
+    for (let i = 0; i < toast.length; i++) {
+      let height = toast[i].offsetHeight;
+      let topMargin = 15;
+
+      if (this._settings.vertical == 'bottom')
+        toast[i].style.bottom = stackMargin + 'px';
+      else if (this._settings.vertical == 'top')
+        toast[i].style.top = stackMargin + 'px';
+
+      stackMargin += height + topMargin;
+    }
+  }
+  removeAction(newToast) {
+    let coordinate_left = newToast.getBoundingClientRect().left,
+      width = newToast.offsetWidth;
+
+    if (this._settings.horizontal == 'right')
+      newToast.style.right = '-' + width + 'px';
+    else
+      newToast.style.left = coordinate_left + width + 'px';
+
+    newToast.style.opacity = 0;
+  }
+  removeDOM(newToast) {
+    const parent = newToast.parentNode;
+    parent.removeChild(newToast);
   }
   message(message) {
     this.init('default', message);
@@ -168,10 +172,8 @@ btn_alert.addEventListener('click', function () {
   message.value ? toast.alert(message.value) : toast.alert('Hello World');
 });
 
-const codeChange = () => {
+var codeChange = function codeChange() {
   const code = document.querySelector('pre > code');
 
-  code.innerHTML =
-    `const toast = new siiimpleToast({<br>  vertical: ${vertical},<br>  horizontal: ${horizontal}<br>});                        
-            <br>// default - black<br>toast.message('something');<br>// success - green<br>toast.success('something');<br>// alert - red<br>toast.alert('something');`;
-}
+  code.innerHTML = 'const toast = new siiimpleToast({<br>  vertical: ' + vertical + ',<br>  horizontal: ' + horizontal + '<br>});                        \n            <br>// default - black<br>toast.message(\'something\');<br>// success - green<br>toast.success(\'something\');<br>// alert - red<br>toast.alert(\'something\');';
+};

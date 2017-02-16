@@ -2,21 +2,9 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-  };
-}();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var siiimpleToast = function () {
   function siiimpleToast(settings) {
@@ -83,39 +71,49 @@ var siiimpleToast = function () {
 
       var time = 0;
 
-      // add Action
       setTimeout(function () {
-        var stackMargin = 15;
-        var toast = document.getElementsByClassName(_this.defaultClass);
-
-        newToast.style.opacity = 1;
-        if (_this._settings.horizontal == 'center') newToast.style.transform = 'translateX(-50%) scale(1)';else newToast.style.transform = 'scale(1)';
-
-        for (var i = 0; i < toast.length; i++) {
-          var height = toast[i].offsetHeight;
-          var topMargin = 15;
-
-          if (_this._settings.vertical == 'bottom') toast[i].style.bottom = stackMargin + 'px';else if (_this._settings.vertical == 'top') toast[i].style.top = stackMargin + 'px';
-
-          stackMargin += height + topMargin;
-        }
+        _this.addAction(newToast);
       }, time += 100);
-
-      // remove Action
       setTimeout(function () {
-        var coordinate_left = newToast.getBoundingClientRect().left,
-            width = newToast.offsetWidth;
-
-        if (_this._settings.horizontal == 'right') newToast.style.right = '-' + width + 'px';else newToast.style.left = coordinate_left + width + 'px';
-
-        newToast.style.opacity = 0;
+        _this.removeAction(newToast);
       }, time += 3000);
-
-      // delete Dom
       setTimeout(function () {
-        var parent = newToast.parentNode;
-        parent.removeChild(newToast);
+        _this.removeDOM(newToast);
       }, time += 500);
+    }
+  }, {
+    key: 'addAction',
+    value: function addAction(newToast) {
+      var stackMargin = 15;
+      var toast = document.getElementsByClassName(this.defaultClass);
+
+      newToast.style.opacity = 1;
+      if (this._settings.horizontal == 'center') newToast.style.transform = 'translateX(-50%) scale(1)';else newToast.style.transform = 'scale(1)';
+
+      for (var i = 0; i < toast.length; i++) {
+        var height = toast[i].offsetHeight;
+        var topMargin = 15;
+
+        if (this._settings.vertical == 'bottom') toast[i].style.bottom = stackMargin + 'px';else if (this._settings.vertical == 'top') toast[i].style.top = stackMargin + 'px';
+
+        stackMargin += height + topMargin;
+      }
+    }
+  }, {
+    key: 'removeAction',
+    value: function removeAction(newToast) {
+      var coordinate_left = newToast.getBoundingClientRect().left,
+          width = newToast.offsetWidth;
+
+      if (this._settings.horizontal == 'right') newToast.style.right = '-' + width + 'px';else newToast.style.left = coordinate_left + width + 'px';
+
+      newToast.style.opacity = 0;
+    }
+  }, {
+    key: 'removeDOM',
+    value: function removeDOM(newToast) {
+      var parent = newToast.parentNode;
+      parent.removeChild(newToast);
     }
   }, {
     key: 'message',
