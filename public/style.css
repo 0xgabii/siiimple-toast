@@ -1,28 +1,27 @@
 @import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
-
-*{
-	box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
+body {
     position: relative;
     width: 100vw;
     height: 100vh;
     background-color: lightcoral;
-	overflow: hidden;
-	font-family: 'Noto Sans Korean', Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-.box{
+.box {
     position: absolute;
     left: 50%;
     top: 50%;
     width: 55rem;
-    -webkit-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
-h1{
+h1 {
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
@@ -30,29 +29,29 @@ h1{
     margin: 1rem 0 2rem 0;
 }
 
-h3{
+h3 {
     font-size: 1.5rem;
     color: black;
     margin: 1rem 0;
 }
 
-.box-inner{
+.box-inner {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-line-pack: center;
-        align-content: center;
+    align-content: center;
 }
 
-.box-inner > div{
+.box-inner>div {
     margin: 0 1rem;
 }
 
-.inner-code{
-    width:100%;
+.inner-code {
+    width: 100%;
 }
 
-pre{    
+pre {
     margin-top: 2rem;
     padding: 2rem;
     height: 90%;
@@ -64,44 +63,46 @@ pre{
     color: white;
 }
 
-.inner-settings{
-    width:100%;
+.inner-settings {
+    width: 100%;
 }
 
-#message{
+#message {
     width: 100%;
     padding: 0.7rem;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
 }
 
-select{
-    width:100%;
+select {
+    width: 100%;
     padding: 0.7rem;
     font-size: 1.2rem;
 }
 
-.btn-wrapper{
+.btn-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
 }
-.btn-wrapper > button{
+
+.btn-wrapper>button {
     padding: 1rem 1.2rem;
     width: 33.3%;
     font-size: 1.2rem;
     border: none;
-    color: white;    
+    color: white;
 }
 
-#default{
+#default {
     background-color: #323232;
 }
-#success{
-    background-color: #8BC34A;   
-}
-#alert{
-    background-color: #d93737;
+
+#success {
+    background-color: #8BC34A;
 }
 
+#alert {
+    background-color: #d93737;
+}
