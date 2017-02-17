@@ -4,7 +4,6 @@
 
 ![demo](http://i.imgur.com/TNzvHD4.png)
 
-**vanilla JS**
 easily replace console.log and alert in toast message
 inspired by material design
 
@@ -15,7 +14,7 @@ npm install --save siiimple-toast
 
 ## Demo
 
-Static hosted [demo site](https://rawgit.com/gomonk3037/siiimple-Toast/master/public/index.html) on GitHub.
+[https://rawgit.com/gomonk3037/siiimple-Toast/master/public/index.html](https://rawgit.com/gomonk3037/siiimple-Toast/master/public/index.html)
 
 ## Usage
 
