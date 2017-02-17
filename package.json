@@ -1,6 +1,6 @@
 {
   "name": "siiimple-toast",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "easily replace console.log and alert in toast message inspired by material design",
   "main": "./distribution/main.js",
   "scripts": {
