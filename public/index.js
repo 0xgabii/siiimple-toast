@@ -7,10 +7,14 @@ class siiimpleToast {
         horizontal: 'center'
       }
     }
+    // throw Parameter Error    
     if (!settings.vertical) throw new Error('Please set parameter "vertical" ex) bottom, top ');
     if (!settings.horizontal) throw new Error('Please set parameter "horizontal" ex) left, center, right ');
+    // data binding
     this._settings = settings;
+    // default Class (DOM)
     this.defaultClass = 'siiimpleToast';
+    // default Style
     this.defaultStyle = {
       position: 'fixed',
       padding: '1rem 1.2rem',
@@ -26,49 +30,81 @@ class siiimpleToast {
       transform: 'scale(0.5)',
       transition: 'all 0.4s ease-out'
     }
-    // verticalStyle
-    if (this._settings.vertical == 'bottom')
-      this.verticalStyle = { bottom: '-100px' };
-    else if (this._settings.vertical == 'top')
-      this.verticalStyle = { top: '-100px' };
-    // horizontalStyle
-    if (this._settings.horizontal == 'left')
-      this.horizontalStyle = { left: '1rem' };
-    else if (this._settings.horizontal == 'center')
-      this.horizontalStyle = {
-        left: '50%',
-        transform: 'translateX(-50%) scale(0.5)'
-      };
-    else if (this._settings.horizontal == 'right')
-      this.horizontalStyle = { right: '1rem' };
+    // set vertical direction
+    this.verticalStyle = this.setVerticalStyle()[this._settings.vertical]();
+    // set horizontal direction
+    this.horizontalStyle = this.setHorizontalStyle()[this._settings.horizontal]();
+  }
+  setVerticalStyle() {
+    return {
+      top: () => {
+        return {
+          top: '-100px'
+        };
+      },
+      bottom: () => {
+        return {
+          bottom: '-100px'
+        };
+      },
+    }
+  }
+  setHorizontalStyle() {
+    return {
+      left: () => {
+        return {
+          left: '1rem'
+        };
+      },
+      center: () => {
+        return {
+          left: '50%',
+          transform: 'translateX(-50%) scale(0.5)'
+        };
+      },
+      right: () => {
+        return {
+          right: '1rem'
+        };
+      }
+    }
+  }
+  setMessageStyle() {
+    return {
+      default: () => {
+        return '#323232';
+      },
+      success: () => {
+        return '#d93737';
+      },
+      alert: () => {
+        return '#8BC34A';
+      }
+    }
   }
   init(state, message) {
-    const root = document.querySelector('body'),
-      newToast = document.createElement('div');
+    const root = document.querySelector('body');
+    const newToast = document.createElement('div');
 
     // set Common class
     newToast.className = this.defaultClass;
     // set message
     newToast.innerHTML = message;
-    // set defaultStyle
-    Object.assign(newToast.style, this.defaultStyle);
-    // set message Mode
-    if (state == 'default')
-      newToast.style.backgroundColor = '#323232';
-    else if (state == 'alert')
-      newToast.style.backgroundColor = '#d93737';
-    else if (state == 'success')
-      newToast.style.backgroundColor = '#8BC34A';
-    // set vertical direction
-    Object.assign(newToast.style, this.verticalStyle);
-    // set horizontal direction
-    Object.assign(newToast.style, this.horizontalStyle);
-
+    // set style
+    Object.assign(
+      newToast.style,
+      this.defaultStyle,
+      this.verticalStyle,
+      this.horizontalStyle
+    );
+    // set Message mode (Color)
+    newToast.style.backgroundColor = this.setMessageStyle()[state]();
     // insert Toast DOM
     root.insertBefore(newToast, root.firstChild);
 
+    // Actions...
     let time = 0;
-
+    // setTimeout - instead Of jQuery.queue();
     setTimeout(() => {
       this.addAction(newToast);
     }, time += 100);
@@ -79,42 +115,50 @@ class siiimpleToast {
       this.removeDOM(newToast);
     }, time += 500);
   }
-  addAction(newToast) {
-    let stackMargin = 15;
+  addAction(obj) {
+    // All toast objects
     const toast = document.getElementsByClassName(this.defaultClass);
+    let pushStack = 15;
 
-    newToast.style.opacity = 1;
-    if (this._settings.horizontal == 'center')
-      newToast.style.transform = 'translateX(-50%) scale(1)';
-    else
-      newToast.style.transform = 'scale(1)';
+    // *CSS* transform - scale, opacity 
+    if (this._settings.horizontal == 'center') {
+      obj.style.transform = 'translateX(-50%) scale(1)';
+    } else {
+      obj.style.transform = 'scale(1)';
+    }
+    obj.style.opacity = 1;
 
-    for (let i = 0; i < toast.length; i++) {
-      let height = toast[i].offsetHeight;
-      let topMargin = 15;
+    // push effect (Down or Top)
+    for (let i = 0; i < toast.length; i += 1) {
+      const height = toast[i].offsetHeight;
+      const objMargin = 15; // interval between objects
 
-      if (this._settings.vertical == 'bottom')
-        toast[i].style.bottom = stackMargin + 'px';
-      else if (this._settings.vertical == 'top')
-        toast[i].style.top = stackMargin + 'px';
+      // *CSS* bottom, top 
+      if (this._settings.vertical == 'bottom') {
+        toast[i].style.bottom = `${pushStack}px`;
+      } else {
+        toast[i].style.top = `${pushStack}px`;
+      }
 
-      stackMargin += height + topMargin;
+      pushStack += height + objMargin;
     }
   }
-  removeAction(newToast) {
-    let coordinate_left = newToast.getBoundingClientRect().left,
-      width = newToast.offsetWidth;
+  removeAction(obj) {
+    const width = obj.offsetWidth;
+    const objCoordinate = obj.getBoundingClientRect();
 
-    if (this._settings.horizontal == 'right')
-      newToast.style.right = '-' + width + 'px';
-    else
-      newToast.style.left = coordinate_left + width + 'px';
-
-    newToast.style.opacity = 0;
+    // remove effect
+    // *CSS*  direction: right, opacity: 0
+    if (this._settings.horizontal == 'right') {
+      obj.style.right = `-${width}px`;
+    } else {
+      obj.style.left = `${objCoordinate.left + width}px`;
+    }
+    obj.style.opacity = 0;
   }
-  removeDOM(newToast) {
-    const parent = newToast.parentNode;
-    parent.removeChild(newToast);
+  removeDOM(obj) {
+    const parent = obj.parentNode;
+    parent.removeChild(obj);
   }
   message(message) {
     this.init('default', message);
@@ -126,7 +170,6 @@ class siiimpleToast {
     this.init('alert', message);
   }
 }
-
 
 let vertical = 'top',
   horizontal = 'center';
