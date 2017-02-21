@@ -41,24 +41,20 @@ var siiimpleToast = function () {
       transition: 'all 0.4s ease-out'
     };
     // set vertical direction
-    this.verticalStyle = this.setVerticalStyle()[this._settings.vertical]();
+    this.verticalStyle = this.setVerticalStyle()[this._settings.vertical];
     // set horizontal direction
-    this.horizontalStyle = this.setHorizontalStyle()[this._settings.horizontal]();
+    this.horizontalStyle = this.setHorizontalStyle()[this._settings.horizontal];
   }
 
   _createClass(siiimpleToast, [{
     key: 'setVerticalStyle',
     value: function setVerticalStyle() {
       return {
-        top: function top() {
-          return {
-            top: '-100px'
-          };
+        top: {
+          top: '-100px'
         },
-        bottom: function bottom() {
-          return {
-            bottom: '-100px'
-          };
+        bottom: {
+          bottom: '-100px'
         }
       };
     }
@@ -66,21 +62,15 @@ var siiimpleToast = function () {
     key: 'setHorizontalStyle',
     value: function setHorizontalStyle() {
       return {
-        left: function left() {
-          return {
-            left: '1rem'
-          };
+        left: {
+          left: '1rem'
         },
-        center: function center() {
-          return {
-            left: '50%',
-            transform: 'translateX(-50%) scale(0.5)'
-          };
+        center: {
+          left: '50%',
+          transform: 'translateX(-50%) scale(0.5)'
         },
-        right: function right() {
-          return {
-            right: '1rem'
-          };
+        right: {
+          right: '1rem'
         }
       };
     }
@@ -88,15 +78,9 @@ var siiimpleToast = function () {
     key: 'setMessageStyle',
     value: function setMessageStyle() {
       return {
-        default: function _default() {
-          return '#323232';
-        },
-        success: function success() {
-          return '#d93737';
-        },
-        alert: function alert() {
-          return '#8BC34A';
-        }
+        default: '#323232',
+        success: '#d93737',
+        alert: '#8BC34A'
       };
     }
   }, {
@@ -114,7 +98,7 @@ var siiimpleToast = function () {
       // set style
       _extends(newToast.style, this.defaultStyle, this.verticalStyle, this.horizontalStyle);
       // set Message mode (Color)
-      newToast.style.backgroundColor = this.setMessageStyle()[state]();
+      newToast.style.backgroundColor = this.setMessageStyle()[state];
       // insert Toast DOM
       root.insertBefore(newToast, root.firstChild);
 

@@ -31,55 +31,39 @@ class siiimpleToast {
       transition: 'all 0.4s ease-out'
     }
     // set vertical direction
-    this.verticalStyle = this.setVerticalStyle()[this._settings.vertical]();
+    this.verticalStyle = this.setVerticalStyle()[this._settings.vertical];
     // set horizontal direction
-    this.horizontalStyle = this.setHorizontalStyle()[this._settings.horizontal]();
+    this.horizontalStyle = this.setHorizontalStyle()[this._settings.horizontal];
   }
   setVerticalStyle() {
     return {
-      top: () => {
-        return {
-          top: '-100px'
-        };
+      top: {
+        top: '-100px'
       },
-      bottom: () => {
-        return {
-          bottom: '-100px'
-        };
-      },
+      bottom: {
+        bottom: '-100px'
+      }
     }
   }
   setHorizontalStyle() {
     return {
-      left: () => {
-        return {
-          left: '1rem'
-        };
+      left: {
+        left: '1rem'
       },
-      center: () => {
-        return {
-          left: '50%',
-          transform: 'translateX(-50%) scale(0.5)'
-        };
+      center: {
+        left: '50%',
+        transform: 'translateX(-50%) scale(0.5)'
       },
-      right: () => {
-        return {
-          right: '1rem'
-        };
+      right: {
+        right: '1rem'
       }
     }
   }
   setMessageStyle() {
     return {
-      default: () => {
-        return '#323232';
-      },
-      success: () => {
-        return '#d93737';
-      },
-      alert: () => {
-        return '#8BC34A';
-      }
+      default: '#323232',
+      success: '#d93737',
+      alert: '#8BC34A',
     }
   }
   init(state, message) {
@@ -98,7 +82,7 @@ class siiimpleToast {
       this.horizontalStyle
     );
     // set Message mode (Color)
-    newToast.style.backgroundColor = this.setMessageStyle()[state]();
+    newToast.style.backgroundColor = this.setMessageStyle()[state];
     // insert Toast DOM
     root.insertBefore(newToast, root.firstChild);
 
