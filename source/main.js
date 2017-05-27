@@ -1,15 +1,40 @@
+const returnVerticalCSS = {
+  top: {
+    top: '-100px',
+  },
+  bottom: {
+    bottom: '-100px',
+  },
+};
+
+const returnHorizontalCSS = {
+  left: {
+    left: '1rem',
+  },
+  center: {
+    left: '50%',
+    transform: 'translateX(-50%) scale(0.5)',
+  },
+  right: {
+    right: '1rem',
+  },
+};
+
+const returnMessageColor = {
+  default: '#323232',
+  success: '#d93737',
+  alert: '#8BC34A',
+};
+
 export default class siiimpleToast {
   constructor(settings) {
-    // default settings
+    // default value
     if (!settings) {
       settings = {
         vertical: 'top',
-        horizontal: 'center'
-      }
+        horizontal: 'center',
+      };
     }
-    // throw Parameter Error    
-    if (!settings.vertical) throw new Error('Please set parameter "vertical" ex) bottom, top ');
-    if (!settings.horizontal) throw new Error('Please set parameter "horizontal" ex) left, center, right ');
     // data binding
     this._settings = settings;
     // default Class (DOM)
@@ -31,42 +56,11 @@ export default class siiimpleToast {
       transition: 'all 0.4s ease-out'
     }
     // set vertical direction
-    this.verticalStyle = this.setVerticalStyle()[this._settings.vertical];
+    this.verticalStyle = returnVerticalCSS[this._settings.vertical];
     // set horizontal direction
-    this.horizontalStyle = this.setHorizontalStyle()[this._settings.horizontal];
+    this.horizontalStyle = returnHorizontalCSS[this._settings.horizontal];
   }
-  setVerticalStyle() {
-    return {
-      top: {
-        top: '-100px'
-      },
-      bottom: {
-        bottom: '-100px'
-      }
-    }
-  }
-  setHorizontalStyle() {
-    return {
-      left: {
-        left: '1rem'
-      },
-      center: {
-        left: '50%',
-        transform: 'translateX(-50%) scale(0.5)'
-      },
-      right: {
-        right: '1rem'
-      }
-    }
-  }
-  setMessageStyle() {
-    return {
-      default: '#323232',
-      success: '#d93737',
-      alert: '#8BC34A',
-    }
-  }
-  init(state, message) {
+  render(state, message) {
     const root = document.querySelector('body');
     const newToast = document.createElement('div');
 
@@ -75,34 +69,27 @@ export default class siiimpleToast {
     // set message
     newToast.innerHTML = message;
     // set style
-    Object.assign(
-      newToast.style,
-      this.defaultStyle,
-      this.verticalStyle,
-      this.horizontalStyle
-    );
+    Object.assign(newToast.style, this.defaultStyle, this.verticalStyle, this.horizontalStyle);
     // set Message mode (Color)
-    newToast.style.backgroundColor = this.setMessageStyle()[state];
+    newToast.style.backgroundColor = returnMessageColor[state];
     // insert Toast DOM
     root.insertBefore(newToast, root.firstChild);
 
-    // Actions...
     let time = 0;
     // setTimeout - instead Of jQuery.queue();
     setTimeout(() => {
-      this.addAction(newToast);
+      this.show(newToast);
     }, time += 100);
     setTimeout(() => {
-      this.removeAction(newToast);
+      this.hide(newToast);
     }, time += 3000);
     setTimeout(() => {
       this.removeDOM(newToast);
     }, time += 500);
   }
-  addAction(obj) {
+  show(obj) {
     // All toast objects
-    const toast = document.getElementsByClassName(this.defaultClass);
-    let pushStack = 15;
+    const toasts = document.getElementsByClassName(this.defaultClass);
 
     // *CSS* transform - scale, opacity 
     if (this._settings.horizontal == 'center') {
@@ -113,21 +100,23 @@ export default class siiimpleToast {
     obj.style.opacity = 1;
 
     // push effect (Down or Top)
-    for (let i = 0; i < toast.length; i += 1) {
-      const height = toast[i].offsetHeight;
-      const objMargin = 15; // interval between objects
+    let pushStack = 15;    
+    for(let i = 0; i < toasts.length; i += 1) {
+      const toast = toasts[i];
+      const height = toast.offsetHeight;
+      const objMargin = 15;
 
       // *CSS* bottom, top 
       if (this._settings.vertical == 'bottom') {
-        toast[i].style.bottom = `${pushStack}px`;
+        toast.style.bottom = `${pushStack}px`;
       } else {
-        toast[i].style.top = `${pushStack}px`;
+        toast.style.top = `${pushStack}px`;
       }
 
       pushStack += height + objMargin;
     }
   }
-  removeAction(obj) {
+  hide(obj) {
     const width = obj.offsetWidth;
     const objCoordinate = obj.getBoundingClientRect();
 
@@ -145,12 +134,12 @@ export default class siiimpleToast {
     parent.removeChild(obj);
   }
   message(message) {
-    this.init('default', message);
+    this.render('default', message);
   }
   success(message) {
-    this.init('success', message);
+    this.render('success', message);
   }
   alert(message) {
-    this.init('alert', message);
+    this.render('alert', message);
   }
 }

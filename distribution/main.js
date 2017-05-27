@@ -10,20 +10,45 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var returnVerticalCSS = {
+  top: {
+    top: '-100px'
+  },
+  bottom: {
+    bottom: '-100px'
+  }
+};
+
+var returnHorizontalCSS = {
+  left: {
+    left: '1rem'
+  },
+  center: {
+    left: '50%',
+    transform: 'translateX(-50%) scale(0.5)'
+  },
+  right: {
+    right: '1rem'
+  }
+};
+
+var returnMessageColor = {
+  default: '#323232',
+  success: '#d93737',
+  alert: '#8BC34A'
+};
+
 var siiimpleToast = function () {
   function siiimpleToast(settings) {
     _classCallCheck(this, siiimpleToast);
 
-    // default settings
+    // default value
     if (!settings) {
       settings = {
         vertical: 'top',
         horizontal: 'center'
       };
     }
-    // throw Parameter Error    
-    if (!settings.vertical) throw new Error('Please set parameter "vertical" ex) bottom, top ');
-    if (!settings.horizontal) throw new Error('Please set parameter "horizontal" ex) left, center, right ');
     // data binding
     this._settings = settings;
     // default Class (DOM)
@@ -45,51 +70,14 @@ var siiimpleToast = function () {
       transition: 'all 0.4s ease-out'
     };
     // set vertical direction
-    this.verticalStyle = this.setVerticalStyle()[this._settings.vertical];
+    this.verticalStyle = returnVerticalCSS[this._settings.vertical];
     // set horizontal direction
-    this.horizontalStyle = this.setHorizontalStyle()[this._settings.horizontal];
+    this.horizontalStyle = returnHorizontalCSS[this._settings.horizontal];
   }
 
   _createClass(siiimpleToast, [{
-    key: 'setVerticalStyle',
-    value: function setVerticalStyle() {
-      return {
-        top: {
-          top: '-100px'
-        },
-        bottom: {
-          bottom: '-100px'
-        }
-      };
-    }
-  }, {
-    key: 'setHorizontalStyle',
-    value: function setHorizontalStyle() {
-      return {
-        left: {
-          left: '1rem'
-        },
-        center: {
-          left: '50%',
-          transform: 'translateX(-50%) scale(0.5)'
-        },
-        right: {
-          right: '1rem'
-        }
-      };
-    }
-  }, {
-    key: 'setMessageStyle',
-    value: function setMessageStyle() {
-      return {
-        default: '#323232',
-        success: '#d93737',
-        alert: '#8BC34A'
-      };
-    }
-  }, {
-    key: 'init',
-    value: function init(state, message) {
+    key: 'render',
+    value: function render(state, message) {
       var _this = this;
 
       var root = document.querySelector('body');
@@ -102,29 +90,27 @@ var siiimpleToast = function () {
       // set style
       _extends(newToast.style, this.defaultStyle, this.verticalStyle, this.horizontalStyle);
       // set Message mode (Color)
-      newToast.style.backgroundColor = this.setMessageStyle()[state];
+      newToast.style.backgroundColor = returnMessageColor[state];
       // insert Toast DOM
       root.insertBefore(newToast, root.firstChild);
 
-      // Actions...
       var time = 0;
       // setTimeout - instead Of jQuery.queue();
       setTimeout(function () {
-        _this.addAction(newToast);
+        _this.show(newToast);
       }, time += 100);
       setTimeout(function () {
-        _this.removeAction(newToast);
+        _this.hide(newToast);
       }, time += 3000);
       setTimeout(function () {
         _this.removeDOM(newToast);
       }, time += 500);
     }
   }, {
-    key: 'addAction',
-    value: function addAction(obj) {
+    key: 'show',
+    value: function show(obj) {
       // All toast objects
-      var toast = document.getElementsByClassName(this.defaultClass);
-      var pushStack = 15;
+      var toasts = document.getElementsByClassName(this.defaultClass);
 
       // *CSS* transform - scale, opacity 
       if (this._settings.horizontal == 'center') {
@@ -135,23 +121,25 @@ var siiimpleToast = function () {
       obj.style.opacity = 1;
 
       // push effect (Down or Top)
-      for (var i = 0; i < toast.length; i += 1) {
-        var height = toast[i].offsetHeight;
-        var objMargin = 15; // interval between objects
+      var pushStack = 15;
+      for (var i = 0; i < toasts.length; i += 1) {
+        var toast = toasts[i];
+        var height = toast.offsetHeight;
+        var objMargin = 15;
 
         // *CSS* bottom, top 
         if (this._settings.vertical == 'bottom') {
-          toast[i].style.bottom = pushStack + 'px';
+          toast.style.bottom = pushStack + 'px';
         } else {
-          toast[i].style.top = pushStack + 'px';
+          toast.style.top = pushStack + 'px';
         }
 
         pushStack += height + objMargin;
       }
     }
   }, {
-    key: 'removeAction',
-    value: function removeAction(obj) {
+    key: 'hide',
+    value: function hide(obj) {
       var width = obj.offsetWidth;
       var objCoordinate = obj.getBoundingClientRect();
 
@@ -173,17 +161,17 @@ var siiimpleToast = function () {
   }, {
     key: 'message',
     value: function message(_message) {
-      this.init('default', _message);
+      this.render('default', _message);
     }
   }, {
     key: 'success',
     value: function success(message) {
-      this.init('success', message);
+      this.render('success', message);
     }
   }, {
     key: 'alert',
     value: function alert(message) {
-      this.init('alert', message);
+      this.render('alert', message);
     }
   }]);
 

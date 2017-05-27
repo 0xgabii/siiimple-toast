@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel source --presets babel-preset-es2015 --plugins transform-object-assign --out-dir distribution",
     "indexbuild": "babel public --presets babel-preset-es2015 --plugins transform-object-assign --out-dir distribution",
-    "start": "npm run build"
+    "start": "npm run build && npm run indexbuild"
   },
   "repository": {
     "type": "git",
