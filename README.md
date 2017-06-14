@@ -76,11 +76,11 @@ Insert this css code into your stylesheet (**src/style.css**)
 }
 
 .siiimpleToast.success {
-  background-color: #d93737;
+  background-color: #8BC34A;
 }
 
 .siiimpleToast.alert {
-  background-color: #8BC34A;
+  background-color: #d93737;
 }
 
 ```
