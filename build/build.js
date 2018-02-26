@@ -1,3 +1,4 @@
+const path = require('path');
 const rimraf = require('rimraf');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.prod.conf');

@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -59,7 +59,7 @@ module.exports = {
     mainStyle,
     wwwStyle,
     new HtmlWebpackPlugin({
-      filename: 'www/index.html',
+      filename: 'index.html',
       template: 'www/index.html',
       inject: true
     }),
