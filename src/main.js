@@ -82,7 +82,7 @@ export default class siiimpleToast {
     }
     obj.style.opacity = 0;
   }
-  removeDOM(obj) {
+  removeDOM(obj) {// eslint-disable-line
     const parent = obj.parentNode;
     parent.removeChild(obj);
   }

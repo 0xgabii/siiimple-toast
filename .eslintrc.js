@@ -1,13 +1,18 @@
 module.exports = {
-    "extends": "airbnb-base",
-    "plugins": [
-        "import"
-    ],
-    "globals": {
-        "document": true
-    },
-    "rules": {
-        "no-param-reassign": 0,
-        "class-methods-use-this": 0,
-    }
-};
+  root: true,
+  extends: 'airbnb-base',  
+  parser: 'babel-eslint',
+  parserOptions: {
+    sourceType: 'module'
+  },
+  env: {
+    browser: true,
+  },
+  'rules': {
+    'import/extensions': ['error', 'always', {
+      'js': 'never',
+    }],
+    'no-param-reassign': 0,
+    'linebreak-style': 0,
+  }
+}

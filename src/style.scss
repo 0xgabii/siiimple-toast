@@ -1,0 +1,48 @@
+.siiimpleToast {
+  position: fixed;
+  padding: 1rem 1.2rem;
+  min-width: 17rem;
+  z-index: 10;
+  border-radius: 2px;
+  color: white;
+  font-weight: 300;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: scale(0.5);
+  transition: all 0.4s ease-out;
+
+  &.top {
+    top: -100px;
+  }
+
+  &.bottom {
+    bottom: -100px;
+  }
+
+  &.left {
+    left: 1rem;
+  }
+
+  &.center {
+    left: 50%;
+    transform: translateX(-50%) scale(0.5);
+  }
+
+  &.right {
+    right: 1rem;
+  }
+
+  &.default {
+    background-color: #323232;
+  }
+
+  &.success {
+    background-color: #8BC34A;
+  }
+
+  &.alert {
+    background-color: #d93737;
+  }
+}

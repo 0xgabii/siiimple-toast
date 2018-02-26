@@ -3,14 +3,13 @@
   "version": "2.0.0",
   "description": "easily replace console.log and alert in toast message inspired by material design",
   "main": "./dist/main.js",
-  "scripts": {    
-    "src-build": "babel src --presets babel-preset-es2015 --plugins transform-object-assign --out-dir dist",
-    "public-build": "babel public --presets babel-preset-es2015 --plugins transform-object-assign --out-dir dist",
-    "build": "npm run src-build && npm run public-build"
+  "scripts": {
+    "dev": "node build/dev-server.js",
+    "build": "node build/build.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gomonk3037/siiimple-Toast.git"
+    "url": "git+https://github.com/gomonk3037/siiimple-toast.git"
   },
   "keywords": [
     "toast",
@@ -18,18 +17,36 @@
     "message",
     "consolelog"
   ],
-  "author": "GoEunseok",
+  "author": "Eunseok Go",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gomonk3037/siiimple-Toast/issues"
+    "url": "https://github.com/gomonk3037/siiimple-toast/issues"
   },
-  "homepage": "https://github.com/gomonk3037/siiimple-Toast#readme",
+  "homepage": "https://github.com/gomonk3037/siiimple-toast#readme",
   "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-preset-es2015": "^6.22.0",
-    "eslint": "^4.0.0",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.3.0"
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.10",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.16.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.4",
+    "webpack-hot-middleware": "^2.21.0",
+    "webpack-merge": "^4.1.1"
   }
 }
