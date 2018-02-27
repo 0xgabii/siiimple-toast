@@ -1,10 +1,10 @@
-# siiimple-Toast
+# siiimple-toast
 
 [![npm version](https://img.shields.io/npm/v/siiimple-toast.svg)](https://badge.fury.io/js/siiimple-toast) [![available](https://img.shields.io/badge/available-IE9%2B%2C%20Chrome%2C%20Opera%20-brightgreen.svg)]() [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
-![demo](./public/example.gif)
+![demo](./example.gif)
 
-easily replace console.log and alert in toast message
+Easily replace console.log and alert in toast message
 inspired by material design
 
 ## Getting Started
@@ -14,7 +14,7 @@ npm install --save siiimple-toast
 
 ## Demo
 
-[https://rawgit.com/gomonk3037/siiimple-Toast/master/public/index.html](https://rawgit.com/gomonk3037/siiimple-Toast/master/public/index.html)
+[https://gomonk3037.github.io/siiimple-toast/](https://gomonk3037.github.io/siiimple-toast/)
 
 ## Usage
 
