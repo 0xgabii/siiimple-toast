@@ -59,12 +59,12 @@ toast = toast.setOptions({
 });
 ```
 
-- `class` (`string`): css class for toast element (defaults to `siiimple-toast`)
+- `class` (`string`): css class for toast element (defaults to `siiimpleToast`)
 - `position` (`string`): positioning toast element (defaults to `top|center`)
-  - available: `top|left`, `top|center`, `top|right`, `bottom|left`, `bottom|center`, `bottom|right`, 
-- `margin` (`number`): margin between multiple toast (defaults to `15(px)`)
-- `delay` (`number`): delay before showing toast element (defaults to `0(ms)`)
-- `duration` (`number`): duration to show toast element (defaults to `3000(ms)`)
+  - available: `top|left`, `top|center`, `top|right`, `bottom|left`, `bottom|center`, `bottom|right`
+- `margin` (`number`): margin between multiple toast (defaults to `15px`)
+- `delay` (`number`): delay before showing toast element (defaults to `0ms`)
+- `duration` (`number`): duration to show toast element (defaults to `3000ms`)
 
 
 ## Available
