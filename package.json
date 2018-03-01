@@ -1,7 +1,7 @@
 {
   "name": "siiimple-toast",
   "version": "2.0.0",
-  "description": "easily replace console.log and alert in toast message inspired by material design",
+  "description": "Toast message inspired by material design",
   "main": "./dist/main.js",
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -14,9 +14,7 @@
   },
   "keywords": [
     "toast",
-    "alert",
-    "message",
-    "consolelog"
+    "notification"
   ],
   "author": "Eunseok Go",
   "license": "MIT",
