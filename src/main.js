@@ -1,98 +1,115 @@
-export default class siiimpleToast {
-  constructor(settings) {
-    // default Settings
-    if (!settings) {
-      settings = {
-        vertical: 'top',
-        horizontal: 'center',
-      };
-    }
-    // default Class (DOM)
-    this.defaultClass = 'siiimpleToast';
-    // settings binding
-    this.settings = settings;
-  }
-  render(state, message) {
-    const root = document.querySelector('body');
+const siiimpleToast = {
+  options: {
+    class: 'siiimpleToast',
+    position: 'top|center',
+    margin: 15,
+    delay: 0,
+    duration: 3000,
+  },
+
+  setOptions(options = {}) {
+    this.options = {
+      ...this.options,
+      ...options,
+    };
+
+    return siiimpleToast;
+  },
+
+  render(state, message, options) {
+    this.setOptions(options);
+
+    const {
+      class: className,
+      position,
+      delay,
+      duration,
+    } = this.options;
+
     const newToast = document.createElement('div');
 
     // set className
-    newToast.className = this.defaultClass;
+    newToast.className = className;
     // set message
     newToast.innerHTML = message;
-    // set toast vertical, horizontal direction (css class)
-    newToast.classList.add(...Object.keys(this.settings).map(key => this.settings[key]));
+    // set position (css class)
+    newToast.classList.add(...position.split('|'));
     // set nessage mode (css class)
     newToast.classList.add(state);
 
-    // insert toast DOM
-    root.insertBefore(newToast, root.firstChild);
-
     let time = 0;
-    // setTimeout - instead Of jQuery.queue();
+    // setTimeout - instead of jQuery.queue();
     setTimeout(() => {
       this.show(newToast);
-    }, time += 100);
+    }, time += delay);
     setTimeout(() => {
       this.hide(newToast);
-    }, time += 3000);
-    setTimeout(() => {
-      this.removeDOM(newToast);
-    }, time += 500);
-  }
-  show(obj) {
-    // all toast object
-    const toasts = document.getElementsByClassName(this.defaultClass);
+    }, time += duration);
+  },
+
+  show(el) {
+    const { class: className, margin, position } = this.options;
+
+    const toasts = document.getElementsByClassName(className);
+    const root = document.querySelector('body');
+    root.insertBefore(el, root.firstChild);
 
     // CSS | transform - scale, opacity
-    if (this.settings.horizontal === 'center') {
-      obj.style.transform = 'translateX(-50%) scale(1)';
-    } else {
-      obj.style.transform = 'scale(1)';
-    }
-    obj.style.opacity = 1;
+    el.style.transform = position.includes('center')
+      ? 'translateX(-50%) scale(1)'
+      : 'scale(1)';
+    el.style.opacity = 1;
 
-    // push effect (Down or Top)
-    let pushStack = 15;
+    // push effect
+    let pushStack = margin;
 
-    for (let i = 0; i < toasts.length; i += 1) {
-      const toast = toasts[i];
+    Array.from(toasts).forEach((toast) => {
       const height = toast.offsetHeight;
-      const objMargin = 15;
 
       // CSS | bottom, top
-      if (this.settings.vertical === 'bottom') {
+      if (toast.classList.contains('bottom')) {
         toast.style.bottom = `${pushStack}px`;
       } else {
         toast.style.top = `${pushStack}px`;
       }
 
-      pushStack += height + objMargin;
-    }
-  }
-  hide(obj) {
-    const width = obj.offsetWidth;
-    const objCoordinate = obj.getBoundingClientRect();
+      pushStack += height + margin;
+    });
+  },
+
+  hide(el) {
+    const { left, width } = el.getBoundingClientRect();
 
     // CSS | right, left
-    if (this.settings.horizontal === 'right') {
-      obj.style.right = `-${width}px`;
+    if (this.options.position.includes('right')) {
+      el.style.right = `-${width}px`;
     } else {
-      obj.style.left = `${objCoordinate.left + width}px`;
+      el.style.left = `${left + width}px`;
     }
-    obj.style.opacity = 0;
-  }
-  removeDOM(obj) {// eslint-disable-line
-    const parent = obj.parentNode;
-    parent.removeChild(obj);
-  }
-  message(message) {
-    this.render('default', message);
-  }
-  success(message) {
-    this.render('success', message);
-  }
-  alert(message) {
-    this.render('alert', message);
-  }
-}
+    el.style.opacity = 0;
+
+    const whenTransitionEnd = () => {
+      this.removeDOM(el);
+      el.removeEventListener('transitionend', whenTransitionEnd);
+    };
+
+    el.addEventListener('transitionend', whenTransitionEnd);
+  },
+
+  removeDOM(el) {// eslint-disable-line
+    const parent = el.parentNode;
+    parent.removeChild(el);
+  },
+
+  message(message, options) {
+    return this.render('default', message, options);
+  },
+  success(message, options) {
+    return this.render('success', message, options);
+  },
+  alert(message, options) {
+    return this.render('alert', message, options);
+  },
+};
+
+export default siiimpleToast;
