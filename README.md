@@ -1,112 +1,72 @@
 # siiimple-toast
 
-[![npm version](https://img.shields.io/npm/v/siiimple-toast.svg)](https://badge.fury.io/js/siiimple-toast) [![available](https://img.shields.io/badge/available-IE9%2B%2C%20Chrome%2C%20Opera%20-brightgreen.svg)]() [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+> Toast message inspired by material design
+
+[![npm version](https://img.shields.io/npm/v/siiimple-toast.svg?style=flat-square)](https://badge.fury.io/js/siiimple-toast)
+[![available](https://img.shields.io/badge/available-IE9%2B%2C%20Chrome%2C%20Opera%20-brightgreen.svg?style=flat-square)]()
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)]()
 
 ![demo](./example.gif)
 
-Easily replace console.log and alert in toast message
-inspired by material design
-
-## Getting Started
-```
-npm install --save siiimple-toast
-```
+**siiimple-toast** is a **Pure** Javascript library for non-blocking notifications.
 
 ## Demo
 
 [https://gomonk3037.github.io/siiimple-toast/](https://gomonk3037.github.io/siiimple-toast/)
 
-## Usage
-
-### Parameter
-
-change message direction <br>
-
-vertical: top, bottom <br>
-horizontal: left, center, right <br>
-
-### Style (Required in v2.0.0)
-
-Insert this css code into your stylesheet (**src/style.css**)
-
-```css
-
-.siiimpleToast {
-  position: fixed;
-  padding: 1rem 1.2rem;
-  min-width: 17rem;
-  z-index: 10;
-  border-radius: 2px;
-  color: white;
-  font-weight: 300;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transform: scale(0.5);
-  transition: all 0.4s ease-out;
-}
-
-/* vertical style */
-.siiimpleToast.top {
-  top: -100px;
-}
-
-.siiimpleToast.bottom {
-  bottom: -100px;
-}
-
-/* horizontal style */
-.siiimpleToast.left {
-  left: 1rem;
-}
-
-.siiimpleToast.center {
-  left: 50%;
-  transform: translateX(-50%) scale(0.5);
-}
-
-.siiimpleToast.right {
-  right: 1rem;
-}
-
-/* message status */
-.siiimpleToast.default {
-  background-color: #323232;
-}
-
-.siiimpleToast.success {
-  background-color: #8BC34A;
-}
-
-.siiimpleToast.alert {
-  background-color: #d93737;
-}
-
+## Installation
+```
+$ yarn add siiimple-toast
 ```
 
-### Example
+## Getting started
 
 ```javascript
-import siiimpleToast from 'siiimple-toast';
+import toast from 'siiimple-toast';
+import 'siiimple-toast/style.css';// style required
 
-const toast = new siiimpleToast();
-// same 
-const toast = new siiimpleToast({
-  vertical: 'top',
-  horizontal: 'center'
-});
+toast.message('Hello world');
+```
 
-// default message
-toast.message('Hello there'); 
+### Onther examples
 
+```javascript
 // success message
-toast.message('Successfully processed');
+toast.success('Successfully processed');
 
 // alert message
 toast.alert('Something seems to be wrong');
 
+// support HTML
+toast.message('<button>Support HTML</button>'); 
+
+// message with options
+toast.message('Set options', { delay: 1000 });
+
 ```
+
+## Options
+
+Use `.setOptions()` to set options
+
+```javascript
+toast = toast.setOptions({
+  class: 'siiimpleToast',
+  position: 'top|center',
+  margin: 15,
+  delay: 0,
+  duration: 3000,
+});
+```
+
+- `class` (`string`): css class for toast element (defaults to `siiimple-toast`)
+- `position` (`string`): positioning toast element (defaults to `top|center`)
+  - available: `top|left`, `top|center`, `top|right`, `bottom|left`, `bottom|center`, `bottom|right`, 
+- `margin` (`number`): margin between multiple toast (defaults to `15(px)`)
+- `delay` (`number`): delay before showing toast element (defaults to `0(ms)`)
+- `duration` (`number`): duration to show toast element (defaults to `3000(ms)`)
+
+
 ## Available
 
 IE9+, Chrome, Opera
