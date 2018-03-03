@@ -1,6 +1,20 @@
+const setStyles = (el, styles) => {
+  Object.keys(styles).forEach((key) => {
+    el.style[key] = styles[key];
+  });
+};
+
+const setAttrs = (el, attrs) => {
+  Object.keys(attrs).forEach((key) => {
+    el.setAttribute(key, attrs[key]);
+  });
+};
+
+const getAttr = (el, attr) => el.getAttribute(attr);
+
 const siiimpleToast = {
   defaultOptions: {
-    // el: 'body',
+    // container: 'body',
     class: 'siiimpleToast',
     position: 'top|center',
     margin: 15,
@@ -33,17 +47,17 @@ const siiimpleToast = {
 
     const newToast = document.createElement('div');
 
-    // set className
+    // logging via attrs
     newToast.className = className;
-    // set message
     newToast.innerHTML = message;
-    // set position (css class)
-    newToast.classList.add(...position.split('|'));
-    // set nessage mode (css class)
-    newToast.classList.add(state);
 
+    setAttrs(newToast, {
+      'data-position': position,
+      'data-state': state,
+    });
+
+    // use .setTimeout() instead of $.queue()
     let time = 0;
-    // setTimeout - instead of jQuery.queue();
     setTimeout(() => {
       this.show(newToast, mergedOptions);
     }, time += delay);
@@ -52,44 +66,49 @@ const siiimpleToast = {
     }, time += duration);
   },
 
-  show(el, { class: className, margin, position }) {
-    const toasts = document.getElementsByClassName(className);
-    const root = document.querySelector('body');
-    root.insertBefore(el, root.firstChild);
+  show(el, { class: className, margin }) {
+    const hasPos = (v, pos) => getAttr(v, 'data-position').includes(pos);
 
-    // CSS | transform - scale, opacity
-    el.style.transform = position.includes('center')
-      ? 'translateX(-50%) scale(1)'
-      : 'scale(1)';
-    el.style.opacity = 1;
+    const container = document.querySelector('body');
+    container.insertBefore(el, container.firstChild);
+
+    // set initial position
+    setStyles(el, {
+      [hasPos(el, 'top') ? 'top' : 'bottom']: '-100px',
+      [hasPos(el, 'left') && 'left']: '15px',
+      [hasPos(el, 'center') && 'left']: `${(container.clientWidth / 2) - (el.clientWidth / 2)}px`,
+      [hasPos(el, 'right') && 'right']: '15px',
+    });
+
+    setStyles(el, {
+      transform: 'scale(1)',
+      opacity: 1,
+    });
 
     // push effect
     let pushStack = margin;
 
-    Array.from(toasts).forEach((toast) => {
-      const height = toast.offsetHeight;
+    Array
+      .from(document.querySelectorAll(`.${className}[data-position="${getAttr(el, 'data-position')}"]`))
+      .forEach((toast) => {
+        setStyles(toast, {
+          [hasPos(toast, 'top') ? 'top' : 'bottom']: `${pushStack}px`,
+        });
 
-      // CSS | bottom, top
-      if (toast.classList.contains('bottom')) {
-        toast.style.bottom = `${pushStack}px`;
-      } else {
-        toast.style.top = `${pushStack}px`;
-      }
-
-      pushStack += height + margin;
-    });
+        pushStack += toast.offsetHeight + margin;
+      });
   },
 
   hide(el) {
+    const hasPos = (v, pos) => getAttr(v, 'data-position').includes(pos);
     const { left, width } = el.getBoundingClientRect();
 
-    // CSS | right, left
-    if (this.options.position.includes('right')) {
-      el.style.right = `-${width}px`;
-    } else {
-      el.style.left = `${left + width}px`;
-    }
-    el.style.opacity = 0;
+    setStyles(el, {
+      [hasPos(el, 'left') && 'left']: `${width}px`,
+      [hasPos(el, 'center') && 'left']: `${left + width}px`,
+      [hasPos(el, 'right') && 'right']: `-${width}px`,
+      opacity: 0,
+    });
 
     const whenTransitionEnd = () => {
       this.removeDOM(el);
