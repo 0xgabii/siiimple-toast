@@ -28,6 +28,8 @@ import 'siiimple-toast/dist/style.css';// style required
 toast.message('Hello world');
 ```
 
+ if you want to customize style, see [style.css](./dist/style.css) or [style.scss](./src/style.scss)
+
 ### Onther examples
 
 ```javascript
@@ -51,21 +53,24 @@ Use `.setOptions()` to set options
 
 ```javascript
 toast = toast.setOptions({
+  container: 'body',
   class: 'siiimpleToast',
   position: 'top|center',
   margin: 15,
   delay: 0,
   duration: 3000,
+  style: {},
 });
 ```
-
+- `container` (`string`): selector for parent of toast elements (defaults to `body`)
+  - use `position: relative`, `overflow: hidden` to prevent overflow
 - `class` (`string`): css class for toast element (defaults to `siiimpleToast`)
 - `position` (`string`): positioning toast element (defaults to `top|center`)
   - available: `top|left`, `top|center`, `top|right`, `bottom|left`, `bottom|center`, `bottom|right`
 - `margin` (`number`): margin between multiple toast (defaults to `15px`)
 - `delay` (`number`): delay before showing toast element (defaults to `0ms`)
 - `duration` (`number`): duration to show toast element (defaults to `3000ms`)
-
+- `style` (`object`): styles for customize tosat element (defaults to `{}`)
 
 ## Available
 
