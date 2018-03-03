@@ -14,7 +14,7 @@ const getAttr = (el, attr) => el.getAttribute(attr);
 
 const siiimpleToast = {
   defaultOptions: {
-    // container: 'body',
+    container: 'body',
     class: 'siiimpleToast',
     position: 'top|center',
     margin: 15,
@@ -69,17 +69,17 @@ const siiimpleToast = {
     return siiimpleToast;
   },
 
-  show(el, { class: className, margin }) {
+  show(el, { container, class: className, margin }) {
     const hasPos = (v, pos) => getAttr(v, 'data-position').includes(pos);
 
-    const container = document.querySelector('body');
-    container.insertBefore(el, container.firstChild);
+    const root = document.querySelector(container);
+    root.insertBefore(el, root.firstChild);
 
     // set initial position
     setStyles(el, {
       [hasPos(el, 'top') ? 'top' : 'bottom']: '-100px',
       [hasPos(el, 'left') && 'left']: '15px',
-      [hasPos(el, 'center') && 'left']: `${(container.clientWidth / 2) - (el.clientWidth / 2)}px`,
+      [hasPos(el, 'center') && 'left']: `${(root.clientWidth / 2) - (el.clientWidth / 2)}px`,
       [hasPos(el, 'right') && 'right']: '15px',
     });
 
@@ -93,6 +93,7 @@ const siiimpleToast = {
 
     Array
       .from(document.querySelectorAll(`.${className}[data-position="${getAttr(el, 'data-position')}"]`))
+      .filter(toast => toast.parentElement === el.parentElement)// matching container
       .forEach((toast) => {
         setStyles(toast, {
           [hasPos(toast, 'top') ? 'top' : 'bottom']: `${pushStack}px`,
@@ -122,7 +123,7 @@ const siiimpleToast = {
   },
 
   removeDOM(el) {// eslint-disable-line
-    const parent = el.parentNode;
+    const parent = el.parentElement;
     parent.removeChild(el);
   },
 
