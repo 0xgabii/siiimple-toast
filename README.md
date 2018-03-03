@@ -45,6 +45,11 @@ toast.message('<button>Support HTML</button>');
 // message with options
 toast.message('Set options', { delay: 1000 });
 
+// support chaining
+toast
+  .message('support')
+  .success('chaining', { delay: 1000 });
+
 ```
 
 ## Options
