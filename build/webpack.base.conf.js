@@ -60,7 +60,7 @@ module.exports = {
     wwwStyle,
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'www/index.html',
+      template: './index.html',
       inject: true
     }),
   ]
