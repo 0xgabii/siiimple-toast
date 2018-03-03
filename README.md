@@ -23,7 +23,7 @@ $ yarn add siiimple-toast
 
 ```javascript
 import toast from 'siiimple-toast';
-import 'siiimple-toast/style.css';// style required
+import 'siiimple-toast/dist/style.css';// style required
 
 toast.message('Hello world');
 ```
