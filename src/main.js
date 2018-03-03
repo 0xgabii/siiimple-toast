@@ -64,6 +64,9 @@ const siiimpleToast = {
     setTimeout(() => {
       this.hide(newToast, mergedOptions);
     }, time += duration);
+
+    // support method chaining
+    return siiimpleToast;
   },
 
   show(el, { class: className, margin }) {
