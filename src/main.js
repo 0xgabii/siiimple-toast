@@ -1,5 +1,6 @@
 const siiimpleToast = {
-  options: {
+  defaultOptions: {
+    // el: 'body',
     class: 'siiimpleToast',
     position: 'top|center',
     margin: 15,
@@ -8,23 +9,27 @@ const siiimpleToast = {
   },
 
   setOptions(options = {}) {
-    this.options = {
-      ...this.options,
-      ...options,
+    return {
+      ...siiimpleToast,
+      defaultOptions: {
+        ...this.defaultOptions,
+        ...options,
+      },
     };
-
-    return siiimpleToast;
   },
 
-  render(state, message, options) {
-    this.setOptions(options);
+  render(state, message, options = {}) {
+    const mergedOptions = {
+      ...this.defaultOptions,
+      ...options,
+    };
 
     const {
       class: className,
       position,
       delay,
       duration,
-    } = this.options;
+    } = mergedOptions;
 
     const newToast = document.createElement('div');
 
@@ -40,16 +45,14 @@ const siiimpleToast = {
     let time = 0;
     // setTimeout - instead of jQuery.queue();
     setTimeout(() => {
-      this.show(newToast);
+      this.show(newToast, mergedOptions);
     }, time += delay);
     setTimeout(() => {
-      this.hide(newToast);
+      this.hide(newToast, mergedOptions);
     }, time += duration);
   },
 
-  show(el) {
-    const { class: className, margin, position } = this.options;
-
+  show(el, { class: className, margin, position }) {
     const toasts = document.getElementsByClassName(className);
     const root = document.querySelector('body');
     root.insertBefore(el, root.firstChild);
