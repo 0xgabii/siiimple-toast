@@ -20,6 +20,7 @@ const siiimpleToast = {
     margin: 15,
     delay: 0,
     duration: 3000,
+    style: {},
   },
 
   setOptions(options = {}) {
@@ -43,6 +44,7 @@ const siiimpleToast = {
       position,
       delay,
       duration,
+      style,
     } = mergedOptions;
 
     const newToast = document.createElement('div');
@@ -56,6 +58,8 @@ const siiimpleToast = {
       'data-state': state,
     });
 
+    setStyles(newToast, style);
+
     // use .setTimeout() instead of $.queue()
     let time = 0;
     setTimeout(() => {
@@ -66,7 +70,7 @@ const siiimpleToast = {
     }, time += duration);
 
     // support method chaining
-    return siiimpleToast;
+    return this;
   },
 
   show(el, { container, class: className, margin }) {
