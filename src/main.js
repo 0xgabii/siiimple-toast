@@ -81,6 +81,7 @@ const siiimpleToast = {
 
     // set initial position
     setStyles(el, {
+      position: container === 'body' ? 'fixed' : 'absolute',
       [hasPos(el, 'top') ? 'top' : 'bottom']: '-100px',
       [hasPos(el, 'left') && 'left']: '15px',
       [hasPos(el, 'center') && 'left']: `${(root.clientWidth / 2) - (el.clientWidth / 2)}px`,
