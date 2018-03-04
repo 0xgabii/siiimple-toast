@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.conf');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = merge(baseWebpackConfig, {
+const config = merge(baseWebpackConfig, {
   output: {
     publicPath: './dist',
   },
@@ -14,9 +14,26 @@ module.exports = merge(baseWebpackConfig, {
       },
       sourceMap: true
     }),
-    new HtmlWebpackPlugin({
-      filename: '../index.html',
-      template: 'www/index.html',
-    }),
   ],
-});
+})
+
+module.exports = [
+  merge(config, {
+    entry: {
+      'siiimple-toast.min': './src/main.js',
+    },
+    output: {
+      libraryTarget: 'window',
+      library: 'siiimpleToast',
+      libraryExport: 'default',
+    },
+  }),
+  merge(config, {
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: '../index.html',
+        template: 'www/index.html',
+      }),
+    ],
+  }),
+];

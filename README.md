@@ -12,20 +12,40 @@
 
 ## Demo
 
-[https://gomonk3037.github.io/siiimple-toast/](https://gomonk3037.github.io/siiimple-toast/)
+[https://eunseok.me/siiimple-toast/](https://eunseok.me/siiimple-toast/)
 
 ## Installation
+
+### npm
 ```
 $ yarn add siiimple-toast
 ```
 
+### cdn
+```html
+<!-- import css -->
+<link href="https://cdn.jsdelivr.net/npm/siiimple-toast/dist/style.css" rel="stylesheet">
+<!-- import js -->
+<script src="https://cdn.jsdelivr.net/npm/siiimple-toast/dist/siiimple-toast.min.js"></script>
+```
+
 ## Getting started
+
+### npm
 
 ```javascript
 import toast from 'siiimple-toast';
 import 'siiimple-toast/dist/style.css';// style required
 
 toast.message('Hello world');
+```
+
+### cdn
+```html
+<script>
+  siiimpleToast.message('Hello world');
+  // window.siiimpleToast === siiimpleToast
+</script>
 ```
 
  if you want to customize style, see [style.css](./dist/style.css) or [style.scss](./src/style.scss)
