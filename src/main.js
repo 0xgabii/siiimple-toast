@@ -74,7 +74,7 @@ const siiimpleToast = {
   },
 
   show(el, { container, class: className, margin }) {
-    const hasPos = (v, pos) => getAttr(v, 'data-position').includes(pos);
+    const hasPos = (v, pos) => getAttr(v, 'data-position').indexOf(pos) > -1;
 
     const root = document.querySelector(container);
     root.insertBefore(el, root.firstChild);
@@ -108,7 +108,7 @@ const siiimpleToast = {
   },
 
   hide(el) {
-    const hasPos = (v, pos) => getAttr(v, 'data-position').includes(pos);
+    const hasPos = (v, pos) => getAttr(v, 'data-position').indexOf(pos) > -1;
     const { left, width } = el.getBoundingClientRect();
 
     setStyles(el, {
