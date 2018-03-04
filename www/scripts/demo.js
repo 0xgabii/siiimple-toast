@@ -27,7 +27,11 @@ const changePreText = () => {
 
 Object.keys(options).forEach((key) => {
   document.querySelector(`[data-input="${key}"]`).addEventListener('keyup', (e) => {
-    options[key] = e.target.value;
+    if (key === 'margin' || key === 'delay' || key === 'duration') {
+      options[key] = Number(e.target.value);
+    } else {
+      options[key] = e.target.value;
+    }
     changePreText();
   });
 });
