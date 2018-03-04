@@ -26,7 +26,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('src')],
+        include: [resolve('src'), resolve('www')],
         options: {
           formatter: require('eslint-friendly-formatter')
         },
@@ -34,7 +34,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src')],
+        include: [resolve('src'), resolve('www')],
       },
       {
         test: /\.scss$/,
