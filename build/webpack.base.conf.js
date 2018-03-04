@@ -10,7 +10,7 @@ const wwwStyle = new ExtractTextPlugin('www/style.css');
 module.exports = {
   entry: {
     main: './src/main.js',
-    'www/script': './www/script.js',
+    'www/script': './www/scripts/index.js',
   },
   output: {
     path: resolve('dist'),
@@ -45,7 +45,7 @@ module.exports = {
         }),
       },
       {
-        test: /\.scss$/,
+        test: /\main.scss$/,
         include: [resolve('www')],
         use: wwwStyle.extract({
           fallback: 'style-loader',

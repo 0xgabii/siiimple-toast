@@ -1,0 +1,35 @@
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  background-color: $oc-gray-0;
+  color: $oc-gray-8;
+  font-size: 14px;
+  overflow-x: hidden;
+}
+
+pre {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: $oc-gray-8;
+  color: #fff;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  background-color: $oc-gray-3;
+  border-radius: 3px;  
+}
+
+ul {
+  line-height: 1.5;
+
+  li {
+    margin-bottom: 0.2rem;
+  }
+}
