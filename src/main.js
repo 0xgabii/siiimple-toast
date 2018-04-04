@@ -12,8 +12,16 @@ const setAttrs = (el, attrs) => {
 
 const getAttr = (el, attr) => el.getAttribute(attr);
 
+const privateKeys = {
+  defaultOptions: Symbol('defaultOptions'),
+  render: Symbol('render'),
+  show: Symbol('show'),
+  hide: Symbol('hide'),
+  removeDOM: Symbol('removeDOM'),
+};
+
 const siiimpleToast = {
-  defaultOptions: {
+  [privateKeys.defaultOptions]: {
     container: 'body',
     class: 'siiimpleToast',
     position: 'top|center',
@@ -26,16 +34,16 @@ const siiimpleToast = {
   setOptions(options = {}) {
     return {
       ...siiimpleToast,
-      defaultOptions: {
-        ...this.defaultOptions,
+      [privateKeys.defaultOptions]: {
+        ...this[privateKeys.defaultOptions],
         ...options,
       },
     };
   },
 
-  render(state, message, options = {}) {
+  [privateKeys.render](state, message, options = {}) {
     const mergedOptions = {
-      ...this.defaultOptions,
+      ...this[privateKeys.defaultOptions],
       ...options,
     };
 
@@ -63,17 +71,17 @@ const siiimpleToast = {
     // use .setTimeout() instead of $.queue()
     let time = 0;
     setTimeout(() => {
-      this.show(newToast, mergedOptions);
+      this[privateKeys.show](newToast, mergedOptions);
     }, time += delay);
     setTimeout(() => {
-      this.hide(newToast, mergedOptions);
+      this[privateKeys.hide](newToast, mergedOptions);
     }, time += duration);
 
     // support method chaining
     return this;
   },
 
-  show(el, { container, class: className, margin }) {
+  [privateKeys.show](el, { container, class: className, margin }) {
     const hasPos = (v, pos) => getAttr(v, 'data-position').indexOf(pos) > -1;
 
     const root = document.querySelector(container);
@@ -108,7 +116,7 @@ const siiimpleToast = {
       });
   },
 
-  hide(el) {
+  [privateKeys.hide](el) {
     const hasPos = (v, pos) => getAttr(v, 'data-position').indexOf(pos) > -1;
     const { left, width } = el.getBoundingClientRect();
 
@@ -120,26 +128,26 @@ const siiimpleToast = {
     });
 
     const whenTransitionEnd = () => {
-      this.removeDOM(el);
+      this[privateKeys.removeDOM](el);
       el.removeEventListener('transitionend', whenTransitionEnd);
     };
 
     el.addEventListener('transitionend', whenTransitionEnd);
   },
 
-  removeDOM(el) {// eslint-disable-line
+  [privateKeys.removeDOM](el) {// eslint-disable-line
     const parent = el.parentElement;
     parent.removeChild(el);
   },
 
   message(message, options) {
-    return this.render('default', message, options);
+    return this[privateKeys.render]('default', message, options);
   },
   success(message, options) {
-    return this.render('success', message, options);
+    return this[privateKeys.render]('success', message, options);
   },
   alert(message, options) {
-    return this.render('alert', message, options);
+    return this[privateKeys.render]('alert', message, options);
   },
 };
 
