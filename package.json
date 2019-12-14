@@ -4,9 +4,8 @@
   "description": "Toast message inspired by material design",
   "main": "dist/main.js",
   "scripts": {
-    "asd": "parcel index.html",
     "start-www": "parcel www/index.html -d docs",
-    "build-www": "parcel build www/index.html -d docs --no-source-maps",
+    "build-www": "parcel build www/index.html -d docs --no-source-maps --public-url docs",
     "build": "parcel build src/siiimple-toast.js --no-source-maps --out-file siiimple-toast.min.js && parcel build src/main.js --no-source-maps && parcel build src/style.scss --no-source-maps"
   },
   "repository": {
