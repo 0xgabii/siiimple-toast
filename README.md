@@ -12,7 +12,7 @@
 
 ## Demo
 
-[https://ooyun.dev/siiimple-toast/](https://ooyun.dev/siiimple-toast/)
+[https://gabii.me/siiimple-toast/](https://gabii.me/siiimple-toast/)
 
 ## Installation
 
